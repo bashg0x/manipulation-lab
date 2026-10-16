@@ -1,0 +1,3 @@
+[submodule "app/RoboManipBaselines"]
+	path = app/RoboManipBaselines
+	url = https://github.com/isri-aist/RoboManipBaselines.git

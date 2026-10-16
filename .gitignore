@@ -1,0 +1,47 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ROS 2 build
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+
+# Experiment outputs
+datasets/*
+!datasets/.gitkeep
+
+experiments/*
+!experiments/.gitkeep
+
+# Models and recordings
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.mcap
+*.bag
+*.db3
+
+# Logs
+*.log
+
+# Data
+*.Identifier

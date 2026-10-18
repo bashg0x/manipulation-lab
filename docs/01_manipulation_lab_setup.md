@@ -9,13 +9,13 @@ Physical AI最終課題向けに、**RoboManipBaselines + MuJoCo** でUR5eのテ
 - シミュレータ：MuJoCo
 - ロボット：UR5e（`MujocoUR5eCable`）
 - AI：RoboManipBaselines（ACTを第一候補、学習は後続工程）
-- 作業ディレクトリ：`~/ai/resarch/manipulation_lab`（既存パスの `resarch` 表記を維持）
+- 作業ディレクトリ：`~/ai/research/manipulation_lab`
 
 ## 2. ディレクトリ作成・取得
 
 ```bash
-mkdir -p ~/ai/resarch/manipulation_lab
-cd ~/ai/resarch/manipulation_lab
+mkdir -p ~/ai/research/manipulation_lab
+cd ~/ai/research/manipulation_lab
 mkdir -p app ros2_ws/src src/adapters src/data src/evaluation configs datasets experiments docs
 
 git clone --recursive https://github.com/isri-aist/RoboManipBaselines.git app/RoboManipBaselines
@@ -37,7 +37,7 @@ manipulation_lab/
 ## 3. Python環境と依存ライブラリ
 
 ```bash
-cd ~/ai/resarch/manipulation_lab
+cd ~/ai/research/manipulation_lab
 sudo apt update
 sudo apt install -y python3-venv ffmpeg \
   libavcodec60 libavformat60 libavutil58 libavdevice60 \
@@ -78,7 +78,7 @@ LIBGL_ALWAYS_SOFTWARE=1
 ## 5. テレオペ起動
 
 ```bash
-cd ~/ai/resarch/manipulation_lab
+cd ~/ai/research/manipulation_lab
 source .venv/bin/activate
 cd app/RoboManipBaselines/robo_manip_baselines
 

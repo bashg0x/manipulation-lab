@@ -50,7 +50,7 @@ RMB データセット（1エピソード＝1つの .rmb ディレクトリ）
 | OpenGL | WSLgクラッシュ対策としてMesa `llvmpipe`（CPU描画） |
 | PyTorch | 確認時 `2.10.0+cu128`、CUDA利用不可（今回は学習しない） |
 | GitHub | `https://github.com/bashg0x/manipulation-lab`（Public） |
-| ローカルのルート | `~/ai/resarch/manipulation_lab`（`resarch` は実際のディレクトリ名） |
+| ローカルのルート | `~/ai/research/manipulation_lab` |
 
 > 本手順ではYUBIの既存環境 `~/ai/resarch/yubi_lab` を変更しない。WSLg表示とCUDAによる機械学習計算は別機能。
 
@@ -59,8 +59,8 @@ RMB データセット（1エピソード＝1つの .rmb ディレクトリ）
 **新しいPCでGitHubリポジトリから再構築する場合**：
 
 ```bash
-mkdir -p ~/ai/resarch
-cd ~/ai/resarch
+mkdir -p ~/ai/research
+cd ~/ai/research
 git clone --recurse-submodules https://github.com/bashg0x/manipulation-lab.git manipulation_lab
 cd manipulation_lab
 ```
@@ -68,7 +68,7 @@ cd manipulation_lab
 既にクローン済みでSubmoduleが未取得の場合：
 
 ```bash
-cd ~/ai/resarch/manipulation_lab
+cd ~/ai/research/manipulation_lab
 git submodule update --init --recursive
 ```
 
@@ -108,7 +108,7 @@ sudo apt install -y \
   libavfilter9 libswscale7 libswresample4 \
   x11-apps mesa-utils
 
-cd ~/ai/resarch/manipulation_lab
+cd ~/ai/research/manipulation_lab
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -121,7 +121,7 @@ python -m pip check
 **既存のPCでは `.venv` を作り直す必要はない**。使用するときだけ：
 
 ```bash
-cd ~/ai/resarch/manipulation_lab
+cd ~/ai/research/manipulation_lab
 source .venv/bin/activate
 ```
 
@@ -172,7 +172,7 @@ Ubuntuを起動し直して `xeyes` が表示され、`glxinfo -B` に **`llvmpi
 ## 5. MuJoCo起動とキーボードテレオペ
 
 ```bash
-cd ~/ai/resarch/manipulation_lab
+cd ~/ai/research/manipulation_lab
 source .venv/bin/activate
 cd app/RoboManipBaselines/robo_manip_baselines
 
@@ -217,7 +217,7 @@ python ./bin/Teleop.py MujocoUR5eCable \
 ファイル一覧を確認する：
 
 ```bash
-cd ~/ai/resarch/manipulation_lab/app/RoboManipBaselines/robo_manip_baselines
+cd ~/ai/research/manipulation_lab/app/RoboManipBaselines/robo_manip_baselines
 find dataset -maxdepth 4 -type f | head -50
 ```
 
@@ -247,7 +247,7 @@ dataset/
 ## 7. 保存したデータを再生
 
 ```bash
-cd ~/ai/resarch/manipulation_lab/app/RoboManipBaselines/robo_manip_baselines
+cd ~/ai/research/manipulation_lab/app/RoboManipBaselines/robo_manip_baselines
 
 python ./bin/Teleop.py MujocoUR5eCable \
   --replay_log \
@@ -263,7 +263,7 @@ python ./bin/Teleop.py MujocoUR5eCable \
 ターミナルでPython文を直接Bashに貼ると `Command 'from' not found` となる。以下のように `python - <<'PY'` を使用するか、`.py` ファイルとして保存して実行する。
 
 ```bash
-cd ~/ai/resarch/manipulation_lab
+cd ~/ai/research/manipulation_lab
 source .venv/bin/activate
 
 python - <<'PY'
@@ -313,7 +313,7 @@ PY
 BashではなくPythonとして実行できるよう、親プロジェクトに `scripts/plot_joint.py` を配置する。
 
 ```bash
-cd ~/ai/resarch/manipulation_lab
+cd ~/ai/research/manipulation_lab
 mkdir -p scripts
 nano scripts/plot_joint.py
 ```
@@ -356,7 +356,7 @@ plt.show()
 実行：
 
 ```bash
-cd ~/ai/resarch/manipulation_lab
+cd ~/ai/research/manipulation_lab
 source .venv/bin/activate
 python scripts/plot_joint.py
 ```
@@ -375,7 +375,7 @@ python scripts/plot_joint.py
 例：
 
 ```bash
-cd ~/ai/resarch/manipulation_lab
+cd ~/ai/research/manipulation_lab
 git submodule status
 git -C app/RoboManipBaselines rev-parse HEAD
 source .venv/bin/activate

@@ -31,6 +31,9 @@ datasets/*
 experiments/*
 !experiments/.gitkeep
 
+# Local backups
+*.backup_local
+
 # Models and recordings
 *.pt
 *.pth
@@ -45,3 +48,15 @@ experiments/*
 
 # Data
 *.Identifier
+
+# Generated experimental data (RAW, HDF5, images)
+data/
+
+# Training artifacts
+training/checkpoints/
+
+# Evaluation outputs
+evaluation/results/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/

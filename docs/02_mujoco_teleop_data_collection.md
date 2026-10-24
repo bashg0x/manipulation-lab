@@ -5,17 +5,6 @@
 > プロジェクト：Physical AI最終課題／将来のYUBI・ROS 2連携を見越した開発環境  
 > ステータス：**MuJoCo起動〜関節角度の可視化まで実施済み**。ACT学習・ROS 2 Bridgeは本書の対象外。
 
-## 0. 完了状況
-
-| 工程 | 状態 | 確認内容 |
-|---|---|---|
-| MuJoCo起動 | ✅ 完了 | `MujocoUR5eCable` をWSLg上に表示 |
-| キーボードテレオペ | ✅ 完了 | UR5eの手先・グリッパを操作 |
-| RMB形式で保存 | ✅ 完了 | `.rmb` ディレクトリを生成 |
-| 保存データの再生 | ✅ 完了 | `--replay_log` で操作を再現 |
-| HDF5構造の確認 | ✅ 完了 | 220ステップ／16データ項目を確認 |
-| 関節角度の可視化 | ✅ 完了 | Joint 0のCommandとMeasuredを比較 |
-
 ## 1. 目的とシステム構成
 
 現在のWSL2 Ubuntu上で **RoboManipBaselines + MuJoCo** を使用し、キーボードによるロボット操作からデータ記録・再生・解析までを行う。将来は同一GitHubのソースを **Ubuntu + NVIDIA RTX** に導入し、**YUBI-SW／ROS 2** と接続する。
@@ -365,26 +354,7 @@ python scripts/plot_joint.py
 
 > 別エピソードを調べるときは `HDF5_PATH` を変更する。将来的にはCLI引数／YAMLでエピソードを選択できるように拡張する。
 
-## 10. GitHubへの記録と再現性
-
-- 本書は**親リポジトリの `docs/`** で管理し、Submodule内の文書やコードを書き換えない。
-- `app/RoboManipBaselines` はGit Submoduleとして固定。親リポジトリ側でコミットIDが記録される。
-- `.venv/`、RMB録画、個人情報・秘密情報、実機の機密データなどはPublic GitHubにコミットしない。
-- データ保存先、スクリプト、Pythonのパッケージ版数、FFmpegの版数、MuJoCo版数、Submoduleコミットを別環境へ移すときに記録する。
-
-例：
-
-```bash
-cd ~/ai/research/manipulation_lab
-git submodule status
-git -C app/RoboManipBaselines rev-parse HEAD
-source .venv/bin/activate
-python -m pip freeze > experiments/requirements_snapshot.txt
-```
-
-> `experiments/` をGit管理から除外している場合、このスナップショットをGitに載せたいときは `docs/` 等へ別途コピーする。再現用のrequirementsを作る場合、バージョン固定はCPU／NVIDIA RTX／Colabで分けて管理する。
-
-## 11. トラブルシューティング
+## 10. トラブルシューティング
 
 | 症状 | 原因・対策 |
 |---|---|
@@ -394,15 +364,6 @@ python -m pip freeze > experiments/requirements_snapshot.txt
 | キー操作が効かない | ウィンドウフォーカス、`n` でテレオペ段階に進んだかを確認。 |
 | データが見つからない | `dataset/` は `app/RoboManipBaselines/robo_manip_baselines/dataset/`。`find` で日時付きディレクトリ名を確認。 |
 | Windows再起動後にGUIが使えない | `xeyes`／`glxinfo -B` を再確認。WSLg設定を確認する。 |
-
-## 12. 次工程：別文書で管理する
-
-本書の対象外とし、別途まとめる：
-
-1. **ACT学習環境**：Colab上でNVIDIA GPUを使用。データはWSL2で取得したRMBを転送する。
-2. **ACT推論／評価**：ColabでGPU評価、またはWSL2用に必要最小限のCPU推論対応を行う。
-3. **ROS 2 Bridge**：観測・指令インターフェースを分離し、将来のYUBI-SW接続を準備する。
-4. **本番環境**：Ubuntu + NVIDIA RTXに同じ親GitHubをクローンして再構築する。
 
 ### 公式資料
 

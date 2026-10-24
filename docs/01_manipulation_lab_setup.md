@@ -121,21 +121,4 @@ python ./bin/Teleop.py MujocoUR5eCable \
 | `n` や操作キーが反応しない | RoboManipBaselinesの画像ウィンドウにフォーカス。テレオペ開始フェーズまで `n` で進んでいるか確認。 |
 | 描画が遅い | `llvmpipe` はCPU描画。まず動作確認を優先し、必要に応じてWindows側AMDドライバー・WSLgの更新を検討。 |
 
-## 7. GitHub管理時の注意
-
-1. `app/RoboManipBaselines` は**外部のGitリポジトリ**。自作コードと混ぜず、最終課題リポジトリでは **Git submodule** として登録するか、取得手順・コミットIDだけを記録する。既存の内部 `.git` を削除しない。
-2. `.venv/`、`datasets/`、`experiments/` の大容量成果物、ログ、動画、秘密情報、個人情報はGitに含めない。必要な小さなサンプルデータだけ選択して公開する。
-3. 動作確認後に `git -C app/RoboManipBaselines rev-parse HEAD` と `python -m pip freeze` を控え、環境再現性を確保する。
-4. 提出用GitHubは **Public** が必須。YUBI-SWの業務用データ・非公開コードは含めない。
-
-## 8. 次の作業
-
-- [x] RoboManipBaselines / MuJoCoの起動
-- [x] WSLg描画の復旧（llvmpipe）
-- [ ] UR5eのキーボード操作確認
-- [ ] 1エピソードの保存・再生とデータ形式の確認
-- [ ] ACTで模倣学習・推論
-- [ ] ROS 2 Bridgeを追加し、将来YUBI-SW入力に差し替え可能なAdapterを実装
-- [ ] 独自タスク・動画・PDFレポートを作成
-
 参考：[RoboManipBaselines](https://github.com/isri-aist/RoboManipBaselines)、[KeyboardInputDevice.py](https://github.com/isri-aist/RoboManipBaselines/blob/master/robo_manip_baselines/teleop/KeyboardInputDevice.py)
